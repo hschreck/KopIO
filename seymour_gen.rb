@@ -25,7 +25,7 @@ diskSizes = {
 }
 
 
-driveSchemes = ["3-partition (Second Partition Primary)"]
+driveSchemes = ["3-partition (Second Partition Primary)", "Don't create the geometry for me, please"]
 puts "What partition scheme is this unit?"
 driveSchemes.each_with_index do |scheme, index|
   puts "#{index+1}) #{scheme}"
