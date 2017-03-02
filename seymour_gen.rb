@@ -4,7 +4,7 @@ IMAGELOCATION = "/home/partimag/"
 PWD = FileUtils.pwd()
 folder = PWD.sub(IMAGELOCATION, "")
 #Get manufacturer, model, and size from PWD
-manufacturer, model, size = folder.split("_")
+manufacturer, model, size = folder.split("/")
 
 #Files to exclude from linking (copy these files instead)
 excludeFromLN = ["sda-pt.sf"]
@@ -45,7 +45,7 @@ diskSizes.each do |diskSize, sectors|
     end
     #Create folder
     if response == "Y"
-        newFolder = "#{IMAGELOCATION}#{manufacturer}_#{model}_#{diskSize}"
+        newFolder = "#{IMAGELOCATION}#{manufacturer}/#{model}/#{diskSize}"
         ###################################################
         # Create New Image Folders and Link/Copy Contents #
         ###################################################
