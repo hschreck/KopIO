@@ -17,6 +17,7 @@ excludeFromLN = ["sda-pt.sf"]
 # small                                                   #
 ###########################################################
 diskSizes = {
+  #80GB drives => 156,000,000 for reference when creating images
   "120" => 234000000,
   "160" => 312500000,
   "250" => 488281250,
@@ -90,6 +91,7 @@ diskSizes.each do |diskSize, sectors|
         ###################################################
 
         if partScheme == 1
+          puts "Recreating image geometry to match..."
           line = geometry[-1]
           thirdPartSize = line.scan(/size= *\d*/)[0].split(" ")[1].to_i
           puts sectors
