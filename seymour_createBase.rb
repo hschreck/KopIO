@@ -36,7 +36,7 @@ until selection == STOPCHAR do
       end
     end
     if confirmation == "Y"
-      location << "#{newFolder}/"
+      location << "/#{newFolder}/"
       FileUtils.mkdir_p(location)
     end
   elsif selection.to_i
