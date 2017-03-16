@@ -38,8 +38,7 @@ until selection == STOPCHAR do
       location << "#{newFolder}/"
       FileUtils.mkdir_p(location)
     end
-  end
-  if selection.to_i
+  elsif selection.to_i
     location << "#{directory[(selection.to_i - 1)]}"
   end
 end
