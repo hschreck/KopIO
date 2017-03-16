@@ -40,7 +40,7 @@ until selection == STOPCHAR do
       FileUtils.mkdir_p(location)
     end
   elsif selection.to_i
-    location << "#{directory[(selection.to_i - 1)]}"
+    location << "#{directory[(selection.to_i - 1)]}/"
   end
 end
 
