@@ -7,7 +7,7 @@ driveSize = `lsblk -b | grep "sda " | grep -oE '[0-9]{3,}'`.chomp.to_i
 humanReadableSize = driveSize / 1000.0 / 1000 / 1000
 humanReadableSize = SIZES.map { |x| [x, (x - humanReadableSize).abs] }.to_h.min_by { |_size, distance| distance }[0]
 
-location = IMAGELOCATION.clone
+location = IMAGELOCATION.to_s
 selection = ""
 until selection == STOPCHAR do
   directory = Dir.entries(location)
