@@ -14,6 +14,7 @@ until selection == STOPCHAR do
   directory.delete(".")
   directory.delete("..")
   directory.sort!
+  puts "Directory: #{location}"
   directory.each_with_index do |subdir, index|
     puts "#{(index+1).to_s}) #{subdir}"
   end
