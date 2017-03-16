@@ -1,5 +1,5 @@
 require 'fileutils'
-IMAGELOCATION = "/home/partimag/"
+IMAGELOCATION = "/home/partimag/".freeze
 STOPCHAR = "S"
 SIZES = [80, 120, 160, 250, 320, 256, 500, 1000].freeze
 
