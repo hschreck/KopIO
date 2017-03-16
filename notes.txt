@@ -1,0 +1,3 @@
+Command to clone drive
+
+sudo ocs-sr -q2 -c -j -z0 -i 1000000000000000 -sfsck -scs -senc -p choose savedisk #{directory} sda
