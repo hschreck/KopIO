@@ -28,7 +28,7 @@ diskSizes = {
 }
 
 
-driveSchemes = ["3-partition (Second Partition Primary)", "Don't create the geometry for me, please"]
+driveSchemes = ["3-partition (Second Partition Primary)", "4-partition (Second Partition Primary)", "Don't create the geometry for me, please"]
 puts "What partition scheme is this unit?"
 driveSchemes.each_with_index do |scheme, index|
   puts "#{index+1}) #{scheme}"
@@ -108,6 +108,30 @@ diskSizes.each do |diskSize, sectors|
 
         end
 
+        if partScheme == 2
+          puts "Recreating image geometry to match..."
+          line = geometry[-1]
+          #get size of last partition
+          fourthPartSize = line.scan(/size= *\d*/)[0].split(" ")[1].to_i
+          puts sectors
+          #set start of last partition
+          fourthPartStart = sectors-fourthPartSize
+          geometry[-1] = line.gsub(/start= *\d*/, "start= #{fourthPartStart.to_s}")
+          #get size of next to last partition
+          line = geometry[-2]
+          thirdPartSize = line.scan(/size= *\d*/)[0].split(" ")[1].to_i
+          thirdPartStart = fourthPartStart - thirdPartSize
+          geometry[-2] = line.gsub(/start= *\d*/, "start= #{thirdPartStart.to_s}")
+          #second (primary) partition
+          line = geometry[-3]
+          secondPartStart = line.scan(/start= *\d*/)[0].split(" ")[1].to_i
+          secondPartSize = thirdPartStart-secondPartStart
+          geometry[-3] = line.gsub(/size= *\d*/, "size= #{secondPartSize.to_i}")
+          File.open("#{newFolder}/sda-pt.sf", "w") do |file|
+            file.puts geometry
+          end
+
+        end
         ###################################################
         # End of Standard 3-Partition (Second Primary)    #
         ###################################################
