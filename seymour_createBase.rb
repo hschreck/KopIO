@@ -48,7 +48,7 @@ end
 if selection == STOPCHAR
   location = location.sub("//", "/")
   system("i3-msg layout splitv")
-  system("xterm -e \"sudo ocs-sr -q2 -j -z0 -i 1000000000000000 -sfsck -scs -senc -p choose savedisk #{location.sub(IMAGELOCATION, "")}#{humanReadableSize} sda
+  system("xterm -e \"sudo ocs-sr -q2 -j -z0 -i 1000000000000000 -p choose savedisk #{location.sub(IMAGELOCATION, "")}#{humanReadableSize} sda
 \"")
   system("xterm -e \"cd #{location}/#{humanReadableSize}; sudo createimagetree\"")
 end
