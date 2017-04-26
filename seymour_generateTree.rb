@@ -136,6 +136,7 @@ diskSizes.each do |diskSize, sectors|
           end
 
         end
+        
         system("diff sda-pt.sf ../#{diskSize.to_s}/sda-pt.sf")
         case $?.exitstatus
         when 0
