@@ -109,6 +109,9 @@ diskSizes.each do |diskSize, sectors|
 
         end
 
+        ###################################################
+        # End of Standard 3-Partition (Second Primary)    #
+        ###################################################
         if partScheme == 2
           puts "Recreating image geometry to match..."
           line = geometry[-1]
@@ -133,10 +136,13 @@ diskSizes.each do |diskSize, sectors|
           end
 
         end
-        ###################################################
-        # End of Standard 3-Partition (Second Primary)    #
-        ###################################################
-
+        system("diff sda-pt.sf ../#{diskSize.to_s}/sda-pt.sf")
+        case $?.exitstatus
+        when 0
+          puts "Files are the same - failure"
+        when 1
+          puts "Files are different - success"
+        end
     end
   end
 end
