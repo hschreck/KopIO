@@ -56,7 +56,7 @@ if selection == STOPCHAR
   partitions.each do |partno|
     system("sudo ntfsfix -d #{drive}#{partno.to_s}")
   end
-  system("xterm -e \"sudo ocs-sr -q2 -j -z0 -i 1000000000000000 -p choose savedisk #{location.sub(IMAGELOCATION, "")}#{humanReadableSize} sda
+  system("xterm -e \"sudo ocs-sr -q2 -j -z0 -i 1000000000000000 -scs -p choose savedisk #{location.sub(IMAGELOCATION, "")}#{humanReadableSize} sda
 \"")
   system("xterm -e \"cd #{location}/#{humanReadableSize}; sudo createimagetree\"")
 end

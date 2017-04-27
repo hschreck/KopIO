@@ -136,13 +136,15 @@ diskSizes.each do |diskSize, sectors|
           end
 
         end
-        
+
         system("diff sda-pt.sf ../#{diskSize.to_s}/sda-pt.sf")
         case $?.exitstatus
         when 0
           puts "Files are the same - failure"
         when 1
           puts "Files are different - success"
+        else
+          puts "Something broke.  Oops."
         end
     end
   end
